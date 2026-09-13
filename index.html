@@ -18,7 +18,6 @@
             --accent-glow: rgba(56, 189, 248, 0.15);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --oracle-red: #ef4444;
             --code-bg: #090d16;
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -82,22 +81,12 @@
             overflow: hidden;
         }
 
-        header::after {
-            content: "SELECT * FROM enterprise_dev;";
-            position: absolute;
-            right: -20px;
-            bottom: -10px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 5rem;
-            color: rgba(30, 41, 59, 0.15);
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
         .hero-content {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         @media(min-width: 768px) {
@@ -699,7 +688,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Animate once on scroll up/down
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
