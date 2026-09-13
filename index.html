@@ -1,477 +1,638 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>CV - Gaurav Patil</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8">
-	
-	
-	<!-- Font -->
-	
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet">
-	
-	<!-- Stylesheets -->
-	
-	<link href="includes/common-css/bootstrap.css" rel="stylesheet">
-	
-	<link href="includes/common-css/ionicons.css" rel="stylesheet">
-	
-	<link href="includes/common-css/fluidbox.min.css" rel="stylesheet">
-	
-	<link href="includes/01-cv-portfolio/css/styles.css" rel="stylesheet">
-	
-	<link href="includes/01-cv-portfolio/css/responsive.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Manohar Patil | Senior PL/SQL Developer & Database Engineer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131c2e;
+            --card-border: #1e293b;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --oracle-red: #ef4444;
+            --code-bg: #090d16;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-	<script src="https://use.fontawesome.com/f2d7fe315a.js"></script>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-	
-	<style type="text/css">
-		.img_container {
-  position: relative;  
-}
+        /* Ambient Background Grid Pattern */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.2) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(30, 41, 59, 0.2) 1px, transparent 1px);
+            background-size: 32px 32px;
+            z-index: -1;
+        }
 
-.img {
-  opacity: 1;
-  display: block;  
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
 
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%)
-}
+        /* Header / Hero Section */
+        header {
+            background: linear-gradient(135deg, rgba(19, 28, 46, 0.9), rgba(11, 15, 25, 0.95));
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
 
-.img_container:hover .img {
-  opacity: 0.3;
-}
+        header::after {
+            content: "SELECT * FROM enterprise_dev;";
+            position: absolute;
+            right: -20px;
+            bottom: -10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 5rem;
+            color: rgba(30, 41, 59, 0.15);
+            pointer-events: none;
+            white-space: nowrap;
+        }
 
-.img_container:hover .middle {
-  opacity: 1;
-}
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
 
-.text {
-  background-color: #FFA804;
-  color: black;
-  font-size: 16px;
-  padding: 16px 32px;
-}
-.skill{
-	text-align: center;
-	font-weight: bold; 
-	font-size: 16px;
-	margin-top: 10px;
-	margin-bottom: 10px; 
-}
-.counter-value
-{
-	font-size: 48px;
-}
+        @media(min-width: 768px) {
+            .hero-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
 
-	</style>
+        .hero-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.5rem;
+        }
 
+        .hero-text h1 span {
+            color: var(--accent);
+        }
+
+        .badge-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-glow);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent);
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        .contact-grid a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-grid a:hover {
+            color: var(--accent);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-color);
+            font-weight: 600;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #0ea5e9;
+            color: var(--bg-color);
+        }
+
+        /* Sections Layout */
+        section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .section-title i {
+            color: var(--accent);
+        }
+
+        /* Summary Panel / Code Shell aesthetic */
+        .summary-box {
+            background: var(--code-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .summary-box .sql-keyword { color: #f472b6; }
+        .summary-box .sql-string { color: #34d399; }
+        .summary-box .sql-var { color: var(--accent); }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -1.82rem;
+            top: 0.35rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 2px solid var(--accent);
+        }
+
+        .job-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        @media(min-width: 640px) {
+            .job-header {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .job-company {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .job-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            background: var(--code-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+        }
+
+        .job-details {
+            list-style-type: none;
+            margin-top: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .job-details li {
+            position: relative;
+            padding-left: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.925rem;
+        }
+
+        .job-details li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .skill-category {
+            background: var(--code-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 1.25rem;
+        }
+
+        .skill-category h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Projects & Education Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card-item {
+            background: var(--code-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-item h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-subtitle {
+            color: var(--accent);
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .card-item p, .card-item ul {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .card-item ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-top: 0.5rem;
+        }
+
+        .card-item ul li::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        .meta-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            border-top: 1px solid var(--card-border);
+            margin-top: 3rem;
+        }
+
+        footer span {
+            color: var(--accent);
+        }
+
+        /* Responsive adjustments */
+        @media(max-width: 768px) {
+            .container { padding: 1rem; }
+            header { padding: 1.5rem; }
+            .hero-text h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
-	
-	<header>
-		<div class="container">
-			<div class="heading-wrapper">
-				<div class="row">
-					<div class="col-sm-6 col-md-6 col-lg-4">
-						<div class="info">
-							<i class="icon ion-ios-location-outline"></i>
-							<div class="right-area">
-								<h5>Hendre Pada Road,</h5>
-								<h5>Badlapur, Thane - 421 503</h5>
-							</div><!-- right-area -->
-						</div><!-- info -->
-					</div><!-- col-sm-4 -->
-					
-					<div class="col-sm-6 col-md-6 col-lg-4">
-						<div class="info">
-							<i class="icon ion-ios-telephone-outline"></i>
-							<div class="right-area">
-								<h5>+91 8237 680394</h5>
-								<!--<h6>+91 9323 731249</h6> -->
-							</div><!-- right-area -->
-						</div><!-- info -->
-					</div><!-- col-sm-4 -->
-					
-					<div class="col-sm-6 col-md-6 col-lg-4">
-						<div class="info">
-							<i class="icon ion-ios-chatboxes-outline"></i>
-							<div class="right-area">
-								<h5>patilgaurav926@gmail.com</h5>
-								<h6>gmpatil2@outlook.com</h6>
-							</div><!-- right-area -->
-						</div><!-- info -->
-					</div><!-- col-sm-4 -->
-				</div><!-- row -->
-			</div><!-- heading-wrapper -->
-			
-			<a class="downlad-btn" target="_blank" href="https://raw.github.com/gaurav-m-patil/Resume/master/Gaurav Patil CV.pdf">Download CV</a>
-		</div><!-- container -->
-	</header>
-	
-	<section class="intro-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-1 col-lg-2"></div>
-				<div class="col-md-10 col-lg-8">
-					<div class="intro">
-						<div class="profile-img"><img src="images/my_1.jpg" alt=""></div>
-						<h2><b>Gaurav Patil</b></h2>
-						<h4 class="font-yellow">Java Enthusiast</h4>
-						<ul class="information margin-tb-30">
-							<li><b>BORN : </b>June 15, 1998</li>
-							<li><b>EMAIL : </b>patilgaurav926@gmail.com</li>
-							<li><b>HIGHEST QUALIFICATION : </b>Undergrad</li>
-						</ul>
-						<ul class="social-icons">							
-							<li><a href="https://www.linkedin.com/in/gauravmpatil/" target="_blank"><i class="ion-social-linkedin"></i></a></li>
-							<li><a href="https://github.com/gaurav-m-patil" target="_blank"><i class="ion-social-github"></i></a></li>
-							<li><a href="https://www.instagram.com/gaurav_m_patil/" target="_blank"><i class="ion-social-instagram"></i></a></li>
-							<li><a href="https://www.facebook.com/patilgauravm" target="_blank"><i class="ion-social-facebook"></i></a></li>
-							<li><a href="https://www.hackerrank.com/patilgaurav" target="_blank"><i class="fa fa-header" aria-hidden="true"></i>
-</a></li>						
-						</ul>
-					</div><!-- intro -->
-				</div><!-- col-sm-8 -->
-			</div><!-- row -->
-		</div><!-- container -->
-	</section><!-- intro-section -->
-	
-	<section class="portfolio-section section">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="heading">
-						<h3><b>Portfolio</b></h3>
-						<h6 class="font-lite-black"><b>MY WORK</b></h6>
-					</div>
-				</div><!-- col-sm-4 -->
-				<div class="col-sm-8">
-					<div class="portfolioFilter clearfix margin-b-80">
-						<!-- <a href="#" data-filter="*" class="current"><b>ALL</b></a> --><!-- 
-						<a href="#" data-filter=".ds"><b>Data Science</b></a>
-						<a href="#" data-filter=".sd"><b>Software Development</b></a> -->
-					</div><!-- portfolioFilter -->
-				</div><!-- col-sm-8 -->
-			</div><!-- row -->
-		</div><!-- container -->
-		
-		<div class="portfolioContainer">
-					
-			<div class="p-item branding sd">
-				<a href="https://github.com/gaurav-m-patil/E-Grampanchayat" target="_blank" >
-					<div class="img_container">
-						<img src="images/e_gram_pro.jpg" alt="E-Gram Project" class="img">
-						<div class="middle">
-    						<div class="text">E-Grampanchayat</div>
-  						</div>
-					</div>	
-				</a>				
-			</div><!-- p-item -->
 
-			<div class="p-item branding sd">
-				<a href="https://github.com/gaurav-m-patil/OBS" target="_blank" >
-					<div class="img_container">
-						<img src="images/obs.JPG" alt="OBS" class="img">
-						<div class="middle">
-    						<div class="text">Online Banking System</div>
-  						</div>
-					</div>	
-				</a>				
-			</div><!-- p-item -->
+    <div class="container">
+        <!-- Hero Header -->
+        <header>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge-title">
+                        <i class="fa-solid fa-database"></i> Senior PL/SQL Developer
+                    </div>
+                    <h1>Gaurav Manohar <span>Patil</span></h1>
+                    <p style="color: var(--text-muted); font-size: 1rem;">Database Engineer | Oracle EBS R12 & Performance Tuning Specialist</p>
+                    
+                    <div class="contact-grid">
+                        <a href="tel:+918237680394"><i class="fa-solid fa-phone"></i> +91 8237680394</a>
+                        <a href="mailto:patilgaurav926@gmail.com"><i class="fa-solid fa-envelope"></i> patilgaurav926@gmail.com</a>
+                        <a href="https://linkedin.com/in/gauravmpatil" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/gauravmpatil</a>
+                        <span><i class="fa-solid fa-location-dot"></i> Badlapur, Mumbai, MH</span>
+                    </div>
+                </div>
+                <div class="hero-actions" style="margin-top: 1.5rem;">
+                    <a href="mailto:patilgaurav926@gmail.com" class="btn btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i> Get in Touch
+                    </a>
+                    <a href="https://github.com/gaurav-m-patil" target="_blank" class="btn">
+                        <i class="fa-brands fa-github"></i> GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </header>
 
-			<div class="p-item branding sd">
-				<a href="https://github.com/gaurav-m-patil/Feedback-System" target="_blank" >
-					<div class="img_container">
-						<img src="images/feedback.JPG" alt="Feedback" class="img">
-						<div class="middle">
-    						<div class="text">Feedback System</div>
-  						</div>
-					</div>	
-				</a>				
-			</div><!-- p-item -->
-		
-		</div><!-- portfolioContainer -->
-		
-	</section><!-- portfolio-section -->
-	
-	
-	<section class="about-section section">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="heading">
-						<h3><b>About me</b></h3>
-						<h6 class="font-lite-black"><b>PROFESSIONAL PATH</b></h6>
-					</div>
-				</div><!-- col-sm-4 -->
-				<div class="col-sm-8">
-					<p class="margin-b-50">Experienced Blogger with a demonstrated history of working in the Computer and Network Security Industry. Skilled in Python (Programming Language), PHP, C ,C++, Java, SQL, Ethical Hacking, Digital Marketing and Computer Security. Strong Operations Professional with a Bachelor of Engineering - BE focused in Computer Engineering from PVPPCOE | Padmabhushan Vasantdada Patil College of Engineering </p>
+        <!-- Professional Summary -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-terminal"></i>
+                <h2>Professional Summary</h2>
+            </div>
+            <div class="summary-box">
+                <span class="sql-keyword">BEGIN</span><br>
+                &nbsp;&nbsp;<span class="sql-var">v_experience_years</span> := <span class="sql-string">5+</span>;<br>
+                &nbsp;&nbsp;<span class="sql-var">v_profile</span> := <span class="sql-string">'Results-driven PL/SQL Developer specializing in Oracle EBS R12 environments, massive daily data processing (30GB+), complex query optimization via AWR, ADDM, and TKPROF, and robust ETL pipeline orchestration using Control-M, GitLab, and Jenkins.'</span>;<br>
+                <span class="sql-keyword">END;</span>
+            </div>
+        </section>
 
+        <!-- Professional Experience -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-briefcase"></i>
+                <h2>Work Experience</h2>
+            </div>
+            
+            <div class="timeline">
+                <!-- TCS IT Analyst -->
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">IT Analyst</div>
+                            <div class="job-company">Tata Consultancy Services (TCS), Mumbai, Maharashtra</div>
+                        </div>
+                        <div class="job-date">August 2024 - Present</div>
+                    </div>
+                    <ul class="job-details">
+                        <li>Designed and deployed enterprise database solutions for Tier-1 clients, improving system integration and increasing operational efficiency by 20%.</li>
+                        <li>Evaluated complex business requirements and authored detailed technical specifications to align database architecture with corporate objectives.</li>
+                        <li>Managed the migration of legacy data systems to modernized platforms, improving system scalability and reducing ongoing maintenance costs.</li>
+                        <li>Executed root cause analysis on critical system bottlenecks utilizing AWR and ADDM reports, reducing overall system downtime by 30% through targeted performance tuning.</li>
+                        <li>Mentored junior database developers, establishing code review standards and promoting best practices in PL/SQL development.</li>
+                    </ul>
+                </div>
 
-					<div class="row">
-						<div class="col-sm-6 col-md-2 col-lg-2">
-							<div class="skill" style="background-color: #FFAD01;border-radius: 15px;padding: 10px">							
-								<h6 class="progress-title">Python</h6>
-							</div><!-- radial-prog-area-->
-						</div><!-- col-sm-6-->
-						
-						<div class="col-sm-6 col-md-2 col-lg-2">
-							<div class="skill" style="background-color: #FFAD01;border-radius: 15px;padding: 10px">							
-								<h6 class="progress-title">MySQL</h6>	
-							</div><!-- radial-prog-area-->
-						</div><!-- col-sm-6-->
-						
-						<div class="col-sm-6 col-md-2 col-lg-2">
-							<div class="skill" style="background-color: #FFAD01;border-radius: 15px;padding: 10px">							
-								<h6 class="progress-title">HTML5</h6>							
-							</div><!-- radial-prog-area-->
-						</div><!-- col-sm-6-->
+                <!-- TCS System Engineer -->
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">System Engineer</div>
+                            <div class="job-company">Tata Consultancy Services (TCS), Mumbai, Maharashtra</div>
+                        </div>
+                        <div class="job-date">April 2023 - July 2024</div>
+                    </div>
+                    <ul class="job-details">
+                        <li>Directed database architecture for a Tier-1 global financial services client's Revenue Generation project, managing daily movement and computation of 30GB+ of enterprise data.</li>
+                        <li>Performed query optimization and execution plan analysis using TKPROF and SQL Trace, reducing average query execution times by up to 50% and increasing system efficiency by 30%.</li>
+                        <li>Automated critical ETL workflows and batch processing using Control-M, reducing manual operational effort by 40%.</li>
+                        <li>Recognized with the <b>Star of the Quarter (2023)</b> award for technical excellence and reliable project delivery.</li>
+                    </ul>
+                </div>
 
-						<div class="col-sm-6 col-md-2 col-lg-2">
-							<div class="skill" style="background-color: #FFAD01;border-radius: 15px;padding: 10px">							
-								<h6 class="progress-title">Java</h6>							
-							</div><!-- radial-prog-area-->
-						</div><!-- col-sm-6-->
+                <!-- TCS Assistant System Engineer -->
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Assistant System Engineer</div>
+                            <div class="job-company">Tata Consultancy Services (TCS), Mumbai, Maharashtra</div>
+                        </div>
+                        <div class="job-date">April 2022 - March 2023</div>
+                    </div>
+                    <ul class="job-details">
+                        <li>Authored and maintained complex PL/SQL procedures, triggers, and functions supporting high-throughput financial transactions processing gigabytes of daily data.</li>
+                        <li>Configured Control-M job schedules to ensure reliable execution of daily database maintenance tasks.</li>
+                        <li>Awarded <b>Star of the Month (2022)</b> for consistent delivery of high-quality database solutions.</li>
+                    </ul>
+                </div>
 
-						<div class="col-sm-6 col-md-2 col-lg-2">
-							<div class="skill" style="background-color: #FFAD01;border-radius: 15px;padding: 10px">							
-								<h6 class="progress-title">ML</h6>							
-							</div><!-- radial-prog-area-->
-						</div><!-- col-sm-6-->
+                <!-- TCS Trainee -->
+                <div class="timeline-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Assistant System Engineer Trainee</div>
+                            <div class="job-company">Tata Consultancy Services (TCS), Mumbai, Maharashtra</div>
+                        </div>
+                        <div class="job-date">April 2021 - March 2022</div>
+                    </div>
+                    <ul class="job-details">
+                        <li>Assisted in full-lifecycle PL/SQL development, logical database design, and query formulation.</li>
+                        <li>Provided technical support for enterprise Oracle Database environments and resolved Tier-1 data processing incidents.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-						<div class="col-sm-6 col-md-2 col-lg-2">
-							<div class="skill" style="background-color: #FFAD01;border-radius: 15px;padding: 10px">							
-								<h6 class="progress-title">C++</h6>							
-							</div><!-- radial-prog-area-->
-						</div><!-- col-sm-6-->
+        <!-- Technical Competencies -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-code"></i>
+                <h2>Technical Stack & Competencies</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4><i class="fa-solid fa-server"></i> Database Technologies</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Oracle Database</span>
+                        <span class="tag">Oracle EBS R12</span>
+                        <span class="tag">PL/SQL Development</span>
+                        <span class="tag">ETL Processing</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fa-solid fa-gauge-high"></i> Performance & Tuning</h4>
+                    <div class="skill-tags">
+                        <span class="tag">AWR Reports</span>
+                        <span class="tag">ADDM Analysis</span>
+                        <span class="tag">TKPROF & SQL Trace</span>
+                        <span class="tag">Query Optimization</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fa-solid fa-gears"></i> Tools & Automation</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Control-M</span>
+                        <span class="tag">Git / GitLab</span>
+                        <span class="tag">Jenkins CI/CD</span>
+                        <span class="tag">Python / Java</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-										
+        <!-- Projects & Education Grid -->
+        <div class="grid-2">
+            <!-- Projects Section -->
+            <section style="margin-bottom: 0;">
+                <div class="section-title" style="font-size: 1.25rem;">
+                    <i class="fa-solid fa-rocket"></i>
+                    <h2>Key Project</h2>
+                </div>
+                <div class="card-item" style="height: calc(100% - 60px);">
+                    <div>
+                        <h4>Oracle EBS R12 Revenue Generation Platform</h4>
+                        <div class="card-subtitle">Tier-1 Financial Enterprise System</div>
+                        <ul>
+                            <li>Designed database schema and PL/SQL logic for major revenue enhancement initiatives.</li>
+                            <li>Managed ETL architecture handling daily processing of 30GB+ volume data with high availability.</li>
+                            <li>Optimized financial queries via index management and execution plan analysis, boosting batch efficiency by 30%.</li>
+                        </ul>
+                    </div>
+                    <span class="meta-tag">Tech: Oracle EBS R12, PL/SQL, Control-M, TKPROF</span>
+                </div>
+            </section>
 
-					</div><!-- row -->
-				</div><!-- col-sm-8 -->
-			</div><!-- row -->
-		</div><!-- container -->
-	</section><!-- about-section -->
-	
-	
-	<section class="education-section section">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="heading">
-						<h3><b>Education</b></h3>
-						<h6 class="font-lite-black"><b>ACADEMIC CAREER</b></h6>
-					</div>
-				</div><!-- col-sm-4 -->
-				<div class="col-sm-8">
-					<div class="education-wrapper">
-						<div class="education margin-b-50">
-							<h4><b>Bachelor's Degree in Computer Engineering</b></h4>
-							<h5 class="font-yellow"><b>PADMABHUSHAN VASANTDAD PATIL PRATISHTHAN'S COLLEGE OF ENGINEERING, MUMBAI, IN</b></h5>
-							<h6 class="font-lite-black margin-t-10">GRADUATED IN NOVEMBER 2020 (3 YEARS)</h6>
-							<h6 class="" style="color :#28023D;"><b>CGPA : 6.6 </b></h6>
-							<p class="margin-tb-30">I've chosen to be an engineer because I thought it would be a lot of fun! Engineering is the field that solves the most impactful of our problems in the world, like creating clean energy or detecting cancer. As engineers, we are constantly changing the world with inventions and solutions that affect everyone's lives. We get to dream up all the coolest gadgets, then we get to go into the lab and actually make them. I am still learning everyday about what makes the world tick, like how television screens make an image or how air bags know when to inflate. We use the materials that surround us in the world to communicate long distances or visualize an atom, which sounds a lot like magic. Engineers are like the wizards of our society; everyone wants them to fix their problems, and no one is quite sure how they came up with the solution. Being an engineer is fun because I get to use magic to create things every day. One day, I'll make something that can help change the world, and that's why I am an Engineer.  </p>
-						</div><!-- education -->
-						
-						<div class="education margin-b-50">
-							<h4><b>DIPLOMA IN COMPUTER ENGINEERING</b></h4>
-							<h5 class="font-yellow"><b>MSBTE, MH, IN</b></h5>
-							<h6 class="font-lite-black margin-t-10">DIPLOMAT IN JUNE 2017 (3 YEARS)</h6>
-							<h6 class="" style="color :#28023D;"><b>CGPA : 9.0 <i class="fa fa-trophy" aria-hidden="true"></i>
-							 Achieved First Rank in College Merit </b></h6>
-							<p class="margin-tb-30" >From the beginning I am passionate and curious about Computers and its working that's why 
-							   i choose Diploma in Computer Engineering as my Career. 
-							   I got skilled with multiple Programming Languages like Python, Java, PHP, C-sharp with some databases 
-							   and some web designing stuff like bootstrap framework which is widly used in industry. </p>
-						</div><!-- education -->
-					</div><!-- education-wrapper -->
-				</div><!-- col-sm-8 -->
-			</div><!-- row -->
-		</div><!-- container -->
-		
-	</section><!-- about-section -->
-	
+            <!-- Education Section -->
+            <section style="margin-bottom: 0;">
+                <div class="section-title" style="font-size: 1.25rem;">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h2>Education</h2>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="card-item">
+                        <h4>Bachelor of Engineering in Computer Engineering</h4>
+                        <div class="card-subtitle">University of Mumbai</div>
+                        <p style="font-size: 0.85rem;">Graduated November 2020 | Cumulative GPA: 6.6/10</p>
+                    </div>
+                    <div class="card-item">
+                        <h4>Diploma in Computer Engineering</h4>
+                        <div class="card-subtitle">MSBTE, Maharashtra</div>
+                        <p style="font-size: 0.85rem;">Graduated June 2017 | Diploma GPA: 77.75% (First Rank Merit)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
 
+        <!-- Footer -->
+        <footer>
+            <p>Designed & Refactored for <span>Gaurav Manohar Patil</span> &copy; 2026<br>Enterprise-Grade Responsive Portfolio & CV</p>
+        </footer>
+    </div>
 
-	<section class="iconboxes-section section" id="counter">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="heading">
-						<h3><b>Certifications</b></h3>
-					</div>
-				</div><!-- col-sm-12 -->
-				
-				<div class="col-sm-6 col-md-6 col-lg-4">
-					<div class="iconbox margin-b-30">
-						<i class="line-icon icon-cut"></i>
-						<h4 class="margin-tb-20"><b>Google IT Support</b></h4>
-						<p>This 5-course certificate, developed by Google, includes innovative curriculum designed to prepare for an entry-level role in IT support. A job in IT can mean in-person or remote help desk work in a small business or at a global company like Google. The program is part of Grow with Google, a Google initiative to help create economic opportunity for all.</p>
-						<h5><a href="https://coursera.org/share/b1630f93dcced868960232fbddb527f6" target="_blank">View Certificate</a></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-4 -->
-
-				<div class="col-sm-6 col-md-6 col-lg-4">
-					<div class="iconbox margin-b-30">
-						<i class="line-icon icon-star"></i>
-						<h4 class="margin-tb-20"><b>Java (Basic)</b></h4>
-						<p>It covers basic topics in Java language such as classes, data structures, inheritance, exception handling, etc. I am proficient in either Java 7 or Java 8.</p>
-						<h5><a href="https://www.hackerrank.com/certificates/af8477180da3" target="_blank">View Certificate</a></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-4 -->
-
-				<div class="col-sm-6 col-md-6 col-lg-4">
-					<div class="iconbox margin-b-30">
-						<i class="line-icon icon-star"></i>
-						<h4 class="margin-tb-20"><b>Python (Basic)</b></h4>
-						<p>It covers topics like Scalar Types, Operators and Control Flow, Strings, Collections and Iteration, Modularity, Objects and Types and Classes.</p>
-						<h5><a href="https://www.hackerrank.com/certificates/41cbc8e4d0c9" target="_blank">View Certificate</a></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-4 -->
-
-				<div class="col-sm-6 col-md-6 col-lg-4">
-					<div class="iconbox margin-b-30">
-						<i class="line-icon icon-rocket"></i>
-						<h4 class="margin-tb-20"><b>Google Cloud Platform Fundamentals: Core Infrastructure</b></h4>
-						<p>This course introduces important concepts and terminology for working with Google Cloud Platform (GCP). I learnt about, and compared, many of the computing and storage services available in Google Cloud Platform, including Google App Engine, Google Compute Engine, Google Kubernetes Engine, Google Cloud Storage, Google Cloud SQL, and BigQuery.</p>
-						<h5><a href="https://coursera.org/share/8ab51efd47cf7ccb5ea3b04a5550cd40" target="_blank">View Certificate</a></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-4 -->
-
-				<div class="col-sm-6 col-md-6 col-lg-4">
-					<div class="iconbox margin-b-30">
-						<i class="line-icon icon-star"></i>
-						<h4 class="margin-tb-20"><b>The Fundamentals of Digital Marketing	</b></h4>
-						<p>The Fundamentals of Digital Marketing lays the foundation for understanding how to exploit the different digital marketing tools in order to improve businesses value proposition(s) to customers and improve their overall competitiveness.</p>
-						<p>CREDENTIAL ID :- HLY JFN G3C
-						<h5><a href="https://learndigital.withgoogle.com/digitalunlocked/validate-certificate-code" target="_blank">View Certificate</a></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-4 -->
-
-				
-
-						
-
-			</div><!-- row -->
-		</div><!-- container -->
-	</section><!-- progression-section -->
-<!--
-	<section class="experience-section section">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="heading">
-						<h3><b>Work Experience</b></h3>
-						<h6 class="font-lite-black"><b>PREVIOUS JOBS</b></h6>
-					</div>
-				</div>
-				<div class="col-sm-8">
-				
-					<div class="experience margin-b-50">
-						<h4><b>Web Developer</b></h4>
-						<h5 class="font-yellow"><b>GDP Churn</b></h5>
-						<h6 class="margin-t-10">JUNE 2019 - AUGUST 2019</h6>
-						<p class="font-semi-white margin-tb-30">It was nice experience working GDP Churn which is specialized Information Technology & Services. I worked there as Full Stack Web Developer and developed app from Base using Python, PHP and Java Language.</p>
-						<p>Technologies Used </p>
-						<ul class="list margin-b-30">
-							<li>Flask Framework</li>
-							<li>Laravel Framework</li>
-							<li>Django Framework</li>
-						</ul>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
-	</section>
- -->
-
-
-	<section class="counter-section" id="counter">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-1"></div>
-				<div class="col-sm-6 col-md-6 col-lg-2">
-					<div class="counter margin-b-30">
-						<h1 class="title"><b><span class="counter-value" data-duration="400" data-count="1">0</span></b></h1>
-						<h5 class="desc"><b>Diploma</b></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-3-->
-				
-				<div class="col-sm-6 col-md-6 col-lg-2">
-					<div class="counter margin-b-30">
-						<h1 class="title"><b><span class="counter-value" data-duration="400" data-count="1">0</span></b></h1>
-						<h5 class="desc"><b>Degree</b></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-3-->
-
-				<div class="col-sm-6 col-md-6 col-lg-2">
-					<div class="counter margin-b-30">
-						<h1 class="title"><b><span class="counter-value" data-duration="1400" data-count="3">0</span></b></h1>
-						<h5 class="desc"><b>Project Completed</b></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-3-->
-				
-				<div class="col-sm-6 col-md-6 col-lg-2">
-					<div class="counter margin-b-30">
-						<h1 class="title"><b><span class="counter-value" data-duration="700" data-count="8">0</span></b></h1>
-						<h5 class="desc"><b>Courses</b></h5>
-					</div><!-- counter -->
-				</div><!-- col-md-3-->
-				
-				<div class="col-sm-6 col-md-6 col-lg-2">
-					<div class="counter margin-b-30">
-						<h1 class="title"><b><span class="counter-value" data-duration="2000" data-count="10">0</span></b></h1>
-						<h5 class="desc"><b>Technologies Used</b></h5>
-					</div><!-- margin-b-30 -->
-				</div><!-- col-md-3-->
-				<div class="col-lg-1"></div>
-			</div><!-- row-->
-		</div><!-- container-->
-    </section><!-- counter-section-->
-	
-	<footer>
-		<p class="copyright">
-			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ion-heart" aria-hidden="true"></i> by <a href="	://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-		</p>
-
-
-	</footer>
-	
-	
-	<!-- SCIPTS -->
-	
-	<script src="includes/common-js/jquery-3.2.1.min.js"></script>
-	
-	<script src="includes/common-js/tether.min.js"></script>
-	
-	<script src="includes/common-js/bootstrap.js"></script>
-	
-	<script src="includes/common-js/isotope.pkgd.min.js"></script>
-	
-	<script src="includes/common-js/jquery.waypoints.min.js"></script>
-	
-	<script src="includes/common-js/progressbar.min.js"></script>
-	
-	<script src="includes/common-js/jquery.fluidbox.min.js"></script>
-	
-	<script src="includes/common-js/scripts.js"></script>
-	
 </body>
 </html>
