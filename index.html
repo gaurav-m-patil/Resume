@@ -20,13 +20,17 @@
             --text-muted: #94a3b8;
             --oracle-red: #ef4444;
             --code-bg: #090d16;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -54,12 +58,24 @@
             padding: 2rem 1.5rem;
         }
 
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Header / Hero Section */
         header {
             background: linear-gradient(135deg, rgba(19, 28, 46, 0.9), rgba(11, 15, 25, 0.95));
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 2.5rem;
+            padding: 3rem 2.5rem;
             margin-bottom: 2rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative;
@@ -93,7 +109,7 @@
         }
 
         .hero-text h1 {
-            font-size: 2.5rem;
+            font-size: 2.75rem;
             font-weight: 700;
             letter-spacing: -0.025em;
             margin-bottom: 0.5rem;
@@ -130,7 +146,7 @@
         .contact-grid a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: var(--transition);
+            transition: color 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -157,7 +173,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             font-size: 0.9rem;
         }
 
@@ -188,6 +204,12 @@
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        section:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.05);
         }
 
         .section-title {
@@ -233,6 +255,11 @@
 
         .timeline-item {
             position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(4px);
         }
 
         .timeline-item::before {
@@ -245,6 +272,12 @@
             border-radius: 50%;
             background: var(--bg-color);
             border: 2px solid var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            transition: background 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            background: var(--accent);
         }
 
         .job-header {
@@ -318,6 +351,12 @@
             border: 1px solid var(--card-border);
             border-radius: 10px;
             padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
         }
 
         .skill-category h4 {
@@ -345,6 +384,13 @@
             border-radius: 6px;
             font-size: 0.825rem;
             font-family: 'JetBrains Mono', monospace;
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         /* Projects & Education Grid */
@@ -362,6 +408,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .card-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
         }
 
         .card-item h4 {
@@ -431,7 +483,7 @@
 
     <div class="container">
         <!-- Hero Header -->
-        <header>
+        <header class="reveal">
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="badge-title">
@@ -444,7 +496,7 @@
                         <a href="tel:+918237680394"><i class="fa-solid fa-phone"></i> +91 8237680394</a>
                         <a href="mailto:patilgaurav926@gmail.com"><i class="fa-solid fa-envelope"></i> patilgaurav926@gmail.com</a>
                         <a href="https://linkedin.com/in/gauravmpatil" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/gauravmpatil</a>
-                        <span><i class="fa-solid fa-location-dot"></i> Badlapur, Mumbai, MH</span>
+                        <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
                     </div>
                 </div>
                 <div class="hero-actions" style="margin-top: 1.5rem;">
@@ -459,7 +511,7 @@
         </header>
 
         <!-- Professional Summary -->
-        <section>
+        <section class="reveal">
             <div class="section-title">
                 <i class="fa-solid fa-terminal"></i>
                 <h2>Professional Summary</h2>
@@ -473,7 +525,7 @@
         </section>
 
         <!-- Professional Experience -->
-        <section>
+        <section class="reveal">
             <div class="section-title">
                 <i class="fa-solid fa-briefcase"></i>
                 <h2>Work Experience</h2>
@@ -549,7 +601,7 @@
         </section>
 
         <!-- Technical Competencies -->
-        <section>
+        <section class="reveal">
             <div class="section-title">
                 <i class="fa-solid fa-code"></i>
                 <h2>Technical Stack & Competencies</h2>
@@ -588,7 +640,7 @@
         <!-- Projects & Education Grid -->
         <div class="grid-2">
             <!-- Projects Section -->
-            <section style="margin-bottom: 0;">
+            <section class="reveal" style="margin-bottom: 0;">
                 <div class="section-title" style="font-size: 1.25rem;">
                     <i class="fa-solid fa-rocket"></i>
                     <h2>Key Project</h2>
@@ -608,7 +660,7 @@
             </section>
 
             <!-- Education Section -->
-            <section style="margin-bottom: 0;">
+            <section class="reveal" style="margin-bottom: 0;">
                 <div class="section-title" style="font-size: 1.25rem;">
                     <i class="fa-solid fa-graduation-cap"></i>
                     <h2>Education</h2>
@@ -634,5 +686,28 @@
         </footer>
     </div>
 
+    <!-- Scroll Reveal Intersection Observer Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Animate once on scroll up/down
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
