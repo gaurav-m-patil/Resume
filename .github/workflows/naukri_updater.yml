@@ -1,16 +1,17 @@
-name: Daily Naukri Profile & Resume Updater
+name: Daily Naukri Profile Update
 
 on:
   schedule:
-    # 02:30 UTC = 08:00 AM IST
+    # 02:30 UTC equals 08:00 AM IST
     - cron: '30 2 * * *'
-  workflow_dispatch: # Allows manual trigger anytime from GitHub UI
+  workflow_dispatch:
 
 jobs:
-  update-profile:
+  run-updater:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
+      - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -18,12 +19,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           pip install playwright
           playwright install chromium --with-deps
 
-      - name: Run Naukri Automation
+      - name: Execute script
         env:
           NAUKRI_EMAIL: ${{ secrets.NAUKRI_EMAIL }}
           NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
