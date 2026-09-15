@@ -27,4 +27,8 @@ jobs:
       - name: Run script
         env:
           NAUKRI_STATE_JSON: ${{ secrets.NAUKRI_STATE_JSON }}
+          PROXY_HOST: ${{ secrets.PROXY_HOST }}
+          PROXY_PORT: ${{ secrets.PROXY_PORT }}
+          PROXY_USER: ${{ secrets.PROXY_USER }}
+          PROXY_PASS: ${{ secrets.PROXY_PASS }}
         run: python update_naukri.py
