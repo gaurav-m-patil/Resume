@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import time
@@ -11,6 +12,33 @@ if not os.path.exists(RESUME_PATH):
 
 if not STATE_JSON_CONTENT:
     raise ValueError("NAUKRI_STATE_JSON secret is missing or empty!")
+
+def sanitize_cookies(raw_json_str):
+    """Parses exported JSON and normalizes the sameSite property for Playwright."""
+    data = json.loads(raw_json_str)
+
+    # Handle case where user directly pasted a cookie list [...]
+    if isinstance(data, list):
+        cookies = data
+        state_data = {"cookies": cookies, "origins": []}
+    else:
+        cookies = data.get("cookies", [])
+        state_data = data
+
+    for cookie in cookies:
+        raw_same_site = str(cookie.get("sameSite", "")).lower()
+
+        if "strict" in raw_same_site:
+            cookie["sameSite"] = "Strict"
+        elif "lax" in raw_same_site:
+            cookie["sameSite"] = "Lax"
+        elif "none" in raw_same_site or "no_restriction" in raw_same_site:
+            cookie["sameSite"] = "None"
+        else:
+            # Fallback for 'unspecified' or missing values
+            cookie["sameSite"] = "Lax"
+
+    return state_data
 
 def open_headline_editor(page):
     edit_btn = page.locator(
@@ -26,9 +54,10 @@ def save_headline(page):
     page.wait_for_timeout(3000)
 
 def run():
-    # Save the session json to a temporary file for Playwright
+    # Sanitize and write session state to temporary file
+    sanitized_state = sanitize_cookies(STATE_JSON_CONTENT)
     with open("session_state.json", "w", encoding="utf-8") as f:
-        f.write(STATE_JSON_CONTENT)
+        json.dump(sanitized_state, f)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -40,7 +69,7 @@ def run():
             ]
         )
         
-        # Load the pre-authenticated session state
+        # Load sanitized session
         context = browser.new_context(
             storage_state="session_state.json",
             viewport={"width": 1280, "height": 800},
@@ -57,7 +86,7 @@ def run():
             page.goto("https://www.naukri.com/mnjuser/profile", wait_until="load", timeout=60000)
             page.wait_for_timeout(5000)
 
-            # Check if session is expired or redirected to login
+            # Check if session is expired or redirected
             if "login" in page.url or "Access Denied" in page.title():
                 raise PermissionError(f"Session expired or blocked. Page title: {page.title()}, URL: {page.url}")
 
@@ -122,7 +151,6 @@ def run():
             print("Step 4 Complete: Fresh resume uploaded successfully.")
 
         finally:
-            # Clean up local session file from the runner
             if os.path.exists("session_state.json"):
                 os.remove("session_state.json")
             browser.close()
