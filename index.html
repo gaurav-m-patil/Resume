@@ -149,6 +149,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
+            align-items: center;
         }
 
         .btn {
@@ -161,9 +162,11 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -177,12 +180,26 @@
             background: var(--accent);
             color: var(--bg-color);
             font-weight: 600;
-            border: none;
+            border: 1px solid var(--accent);
         }
 
         .btn-primary:hover {
             background: #0ea5e9;
             color: var(--bg-color);
+            border-color: #0ea5e9;
+        }
+
+        .btn-resume {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .btn-resume:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            border-color: var(--accent);
         }
 
         /* Sections Layout */
@@ -465,6 +482,14 @@
             .container { padding: 1rem; }
             header { padding: 1.5rem; }
             .hero-text h1 { font-size: 2rem; }
+            .hero-actions {
+                width: 100%;
+                margin-top: 1rem;
+            }
+            .hero-actions .btn {
+                flex: 1 1 140px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -489,11 +514,11 @@
                     </div>
                 </div>
                 <div class="hero-actions" style="margin-top: 1.5rem;">
+                    <a href="resume.pdf" download="Gaurav_Manohar_Patil_Resume.pdf" class="btn btn-resume">
+                        <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+                    </a>
                     <a href="mailto:patilgaurav926@gmail.com" class="btn btn-primary">
                         <i class="fa-solid fa-paper-plane"></i> Get in Touch
-                    </a>
-                    <a href="https://github.com/gaurav-m-patil" target="_blank" class="btn">
-                        <i class="fa-brands fa-github"></i> GitHub Profile
                     </a>
                 </div>
             </div>
