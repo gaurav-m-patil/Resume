@@ -3,12 +3,14 @@ import re
 import time
 from playwright.sync_api import sync_playwright
 
-EMAIL = os.environ.get("NAUKRI_EMAIL")
-PASSWORD = os.environ.get("NAUKRI_PASSWORD")
+STATE_JSON_CONTENT = os.environ.get("NAUKRI_STATE_JSON")
 RESUME_PATH = os.path.abspath("resume.pdf")
 
 if not os.path.exists(RESUME_PATH):
     raise FileNotFoundError("resume.pdf not found in root directory!")
+
+if not STATE_JSON_CONTENT:
+    raise ValueError("NAUKRI_STATE_JSON secret is missing or empty!")
 
 def open_headline_editor(page):
     edit_btn = page.locator(
@@ -24,62 +26,40 @@ def save_headline(page):
     page.wait_for_timeout(3000)
 
 def run():
+    # Save the session json to a temporary file for Playwright
+    with open("session_state.json", "w", encoding="utf-8") as f:
+        f.write(STATE_JSON_CONTENT)
+
     with sync_playwright() as p:
-        # Launch Chromium with anti-detection flags
         browser = p.chromium.launch(
             headless=True,
             args=[
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-infobars",
-                "--window-size=1920,1080"
+                "--disable-setuid-sandbox"
             ]
         )
         
+        # Load the pre-authenticated session state
         context = browser.new_context(
-            viewport={"width": 1920, "height": 1080},
+            storage_state="session_state.json",
+            viewport={"width": 1280, "height": 800},
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
                 "Chrome/124.0.0.0 Safari/537.36"
-            ),
-            locale="en-US"
+            )
         )
-
         page = context.new_page()
 
-        # Mask webdriver property to bypass automated bot checks
-        page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => undefined
-            });
-        """)
-
         try:
-            print("Logging into Naukri...")
-            page.goto("https://www.naukri.com/nlogin/login", wait_until="domcontentloaded", timeout=60000)
-            
-            # Wait for either the ID selector or alternate placeholder selectors
-            email_selector = "#usernameField, input[placeholder*='Email'], input[placeholder*='Username']"
-            page.wait_for_selector(email_selector, state="visible", timeout=30000)
+            print("Navigating directly to profile using saved session...")
+            page.goto("https://www.naukri.com/mnjuser/profile", wait_until="load", timeout=60000)
+            page.wait_for_timeout(5000)
 
-            # Fill credentials
-            page.locator(email_selector).first.fill(EMAIL)
-            
-            pwd_selector = "#passwordField, input[type='password']"
-            page.locator(pwd_selector).first.fill(PASSWORD)
-
-            # Submit
-            submit_btn = page.locator("button[type='submit'], button:has-text('Login')").first
-            submit_btn.click()
-
-            # Wait for dashboard navigation
-            page.wait_for_url(re.compile(r".*(mnjuser|homepage).*"), timeout=40000)
-            print("Login successful.")
-
-            page.goto("https://www.naukri.com/mnjuser/profile", wait_until="domcontentloaded", timeout=60000)
-            page.wait_for_timeout(4000)
+            # Check if session is expired or redirected to login
+            if "login" in page.url or "Access Denied" in page.title():
+                raise PermissionError(f"Session expired or blocked. Page title: {page.title()}, URL: {page.url}")
 
             # ----------------------------------------------------
             # Step 1: Remove 'E'/'e' from 'YOE'/'yoe' and save
@@ -141,13 +121,10 @@ def run():
             page.wait_for_timeout(7000)
             print("Step 4 Complete: Fresh resume uploaded successfully.")
 
-        except Exception as e:
-            # Capture what the browser saw for diagnostic debugging
-            page.screenshot(path="error_screen.png", full_page=True)
-            print(f"Page title during error: {page.title()}")
-            print(f"Current URL: {page.url}")
-            raise e
         finally:
+            # Clean up local session file from the runner
+            if os.path.exists("session_state.json"):
+                os.remove("session_state.json")
             browser.close()
 
 if __name__ == "__main__":
