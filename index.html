@@ -147,9 +147,16 @@
 
         .hero-actions {
             display: flex;
-            flex-wrap: wrap;
             gap: 0.75rem;
-            align-items: center;
+            align-items: stretch;
+            margin-top: 1.5rem;
+        }
+
+        .hero-actions .btn {
+            flex: 1 1 0px;
+            min-height: 46px;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .btn {
@@ -484,11 +491,11 @@
             .hero-text h1 { font-size: 2rem; }
             .hero-actions {
                 width: 100%;
-                margin-top: 1rem;
+                margin-top: 1.25rem;
             }
             .hero-actions .btn {
-                flex: 1 1 140px;
-                text-align: center;
+                padding: 0.75rem 0.5rem;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -513,9 +520,9 @@
                         <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
                     </div>
                 </div>
-                <div class="hero-actions" style="margin-top: 1.5rem;">
+                <div class="hero-actions">
                     <a href="resume.pdf" download="Gaurav_Manohar_Patil_Resume.pdf" class="btn btn-resume">
-                        <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+                        <i class="fa-solid fa-file-arrow-down"></i> Resume
                     </a>
                     <a href="mailto:patilgaurav926@gmail.com" class="btn btn-primary">
                         <i class="fa-solid fa-paper-plane"></i> Get in Touch
