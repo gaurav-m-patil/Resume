@@ -38,7 +38,7 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Upgrade 5: Fluid Typography */
+            /* Fluid Typography */
             font-size: clamp(0.95rem, 1.2vw, 1.05rem); 
         }
 
@@ -83,25 +83,6 @@
             overflow: hidden;
         }
 
-        /* Upgrade 3: The Typewriter Effect Background */
-        .hero-bg-text {
-            position: absolute;
-            top: 15%;
-            left: 5%;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            color: rgba(56, 189, 248, 0.03);
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid rgba(56, 189, 248, 0.2);
-            animation: typing 3s steps(30, end) forwards, blink-caret 0.8s step-end infinite;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: rgba(56, 189, 248, 0.4); } }
-
         .hero-content {
             display: flex;
             flex-direction: column;
@@ -122,7 +103,7 @@
             flex: 1;
         }
 
-        /* Upgrade 5: Fluid Typography */
+        /* DB Terminal Name Effect */
         .hero-text h1 {
             font-size: clamp(2rem, 5vw, 3.5rem); 
             font-weight: 700;
@@ -131,11 +112,23 @@
             line-height: 1.1;
         }
 
-        .hero-text h1 span {
+        .accent-text {
             color: var(--accent);
         }
 
-        /* Upgrade 4: Layout Balancing Graphic */
+        .terminal-cursor {
+            color: var(--accent);
+            font-weight: 400;
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Layout Balancing Graphic */
         .hero-graphic {
             display: none;
             position: relative;
@@ -213,6 +206,7 @@
             gap: 0.75rem;
             align-items: stretch;
             margin-top: 1.5rem;
+            flex-wrap: wrap; 
         }
 
         .hero-actions .btn {
@@ -303,7 +297,7 @@
             color: var(--accent);
         }
 
-        /* Upgrade 1: The "IDE/Terminal" Summary Upgrade */
+        /* The "IDE/Terminal" Summary Upgrade */
         .summary-box {
             background: var(--code-bg);
             border: 1px solid var(--card-border);
@@ -355,7 +349,7 @@
         .summary-box .sql-string { color: #34d399; }
         .summary-box .sql-var { color: var(--accent); }
 
-        /* Upgrade 2: The "Lighting Up" Timeline */
+        /* The "Lighting Up" Timeline */
         .timeline {
             position: relative;
             padding-left: 2rem;
@@ -364,7 +358,6 @@
             gap: 2.5rem;
         }
 
-        /* Static background line */
         .timeline::before {
             content: "";
             position: absolute;
@@ -375,7 +368,6 @@
             background: var(--card-border);
         }
 
-        /* Dynamic fill line controlled by JS */
         .timeline-progress {
             position: absolute;
             left: 5px;
@@ -400,7 +392,7 @@
         .timeline-item::before {
             content: "";
             position: absolute;
-            left: -2.35rem; /* Centered precisely over the line */
+            left: -2.35rem; 
             top: 0.35rem;
             width: 14px;
             height: 14px;
@@ -411,7 +403,6 @@
             z-index: 2;
         }
 
-        /* Activated state triggered by JS */
         .timeline-item.active-dot::before {
             border-color: var(--accent);
             background: var(--accent);
@@ -519,7 +510,7 @@
             gap: 0.5rem;
         }
 
-        /* Upgrade 3: Staggered Skill Tags Fade In */
+        /* Staggered Skill Tags Fade In */
         .tag {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -538,7 +529,6 @@
             transform: translateY(0);
         }
 
-        /* Nth-child stagger for micro-interactions */
         .reveal.active .tag:nth-child(1) { transition-delay: 0.1s, 0.1s, 0s, 0s, 0s; }
         .reveal.active .tag:nth-child(2) { transition-delay: 0.2s, 0.2s, 0s, 0s, 0s; }
         .reveal.active .tag:nth-child(3) { transition-delay: 0.3s, 0.3s, 0s, 0s, 0s; }
@@ -629,11 +619,9 @@
             color: var(--accent);
         }
 
-        /* Responsive adjustments */
         @media(max-width: 768px) {
             .container { padding: 1rem; }
             header { padding: 1.5rem; }
-            .hero-text h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -642,15 +630,15 @@
     <div class="container">
         <!-- Hero Header -->
         <header class="reveal">
-            <!-- New Background Typewriter Animation -->
-            <div class="hero-bg-text">SELECT * FROM enterprise_dev;</div>
-            
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="badge-title">
                         <i class="fa-solid fa-database"></i> Senior PL/SQL Developer
                     </div>
-                    <h1>Gaurav Manohar <span>Patil</span></h1>
+                    
+                    <!-- Typing Name Target -->
+                    <h1><span id="typed-name">Gaurav Manohar <span class="accent-text">Patil</span></span><span class="terminal-cursor">_</span></h1>
+                    
                     <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Database Engineer | Oracle EBS R12 & Performance Tuning Specialist</p>
                     
                     <div class="contact-grid">
@@ -660,12 +648,17 @@
                         <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
                     </div>
                 </div>
-                <div class="hero-actions" style="margin-top: 1.5rem;">
+                
+                <div class="hero-actions">
+                    <!-- Get in Touch Button -->
                     <a href="mailto:patilgaurav926@gmail.com" class="btn btn-primary">
                         <i class="fa-solid fa-paper-plane"></i> Get in Touch
                     </a>
-                    <a href="https://github.com/gaurav-m-patil" target="_blank" class="btn">
-                        <i class="fa-brands fa-github"></i> GitHub Profile
+                    
+                    <!-- Download Resume Button -->
+                    <!-- Points to resume.pdf on server, downloads as Resume_Gaurav_Patil.pdf -->
+                    <a href="resume.pdf" download="Resume_Gaurav_Patil.pdf" class="btn btn-resume">
+                        <i class="fa-solid fa-file-arrow-down"></i> Download Resume
                     </a>
                 </div>
             </div>
@@ -861,7 +854,38 @@
     <!-- Interactivity Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. Scroll Reveal Intersection Observer
+            // 1. Terminal Typing Effect for Name
+            const namePart1 = "Gaurav Manohar ";
+            const namePart2 = "Patil";
+            const typedNameEl = document.getElementById('typed-name');
+            
+            // Clear the static text immediately so JS can type it out
+            typedNameEl.innerHTML = '';
+            
+            let charIndex = 0;
+            let isTypingLast = false;
+            
+            function typeName() {
+                if (charIndex < namePart1.length) {
+                    typedNameEl.innerHTML += namePart1.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeName, 80); // Speed of typing
+                } else if (!isTypingLast) {
+                    // Inject the colored span for the last name
+                    typedNameEl.innerHTML += "<span class='accent-text'></span>";
+                    isTypingLast = true;
+                    setTimeout(typeName, 80);
+                } else if (charIndex - namePart1.length < namePart2.length) {
+                    // Target the newly injected span and type inside it
+                    typedNameEl.querySelector('.accent-text').innerHTML += namePart2.charAt(charIndex - namePart1.length);
+                    charIndex++;
+                    setTimeout(typeName, 80);
+                }
+            }
+            // Start the typing animation 500ms after load
+            setTimeout(typeName, 500);
+
+            // 2. Scroll Reveal Intersection Observer
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
@@ -872,7 +896,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        // Keep observing if you want animations to re-trigger, or unobserve to run once
                         observer.unobserve(entry.target); 
                     }
                 });
@@ -882,7 +905,7 @@
                 observer.observe(section);
             });
 
-            // 2. Interactive "Lighting Up" Timeline Logic
+            // 3. Interactive "Lighting Up" Timeline Logic
             const timeline = document.getElementById('experience-timeline');
             const progressLine = document.getElementById('timeline-progress');
             const timelineItems = document.querySelectorAll('.timeline-item');
@@ -893,23 +916,19 @@
                 const rect = timeline.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
                 
-                // Trigger line growth when the timeline reaches the middle of the viewport
                 const triggerPoint = windowHeight * 0.6; 
                 
                 if (rect.top < triggerPoint) {
                     const totalHeight = rect.height;
                     const scrolled = triggerPoint - rect.top;
-                    // Calculate percentage and cap between 0 and 100
                     const progress = Math.min(Math.max((scrolled / totalHeight) * 100, 0), 100);
                     progressLine.style.height = `${progress}%`;
                 } else {
                     progressLine.style.height = `0%`;
                 }
 
-                // Activate individual dots as the line passes them
                 timelineItems.forEach(item => {
                     const itemRect = item.getBoundingClientRect();
-                    // Using an offset so the dot lights up right as the line hits it
                     if (itemRect.top < triggerPoint + 20) {
                         item.classList.add('active-dot');
                     } else {
@@ -918,9 +937,7 @@
                 });
             }
 
-            // Listen to scroll events for the timeline animation
             window.addEventListener('scroll', updateTimeline);
-            // Run once on load just in case the timeline is already in view
             updateTimeline();
         });
     </script>
