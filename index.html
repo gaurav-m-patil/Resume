@@ -38,7 +38,6 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Fluid Typography */
             font-size: clamp(0.95rem, 1.2vw, 1.05rem); 
         }
 
@@ -84,32 +83,24 @@
         }
 
         .hero-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
             position: relative;
             z-index: 2;
         }
 
-        @media(min-width: 850px) {
-            .hero-content {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        .hero-text {
-            flex: 1;
-        }
-
         /* DB Terminal Name Effect */
-        .hero-text h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem); 
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem); 
             font-weight: 700;
             letter-spacing: -0.025em;
             margin-bottom: 0.5rem;
             line-height: 1.1;
+            white-space: nowrap; /* Forces name to stay on one line */
+        }
+
+        @media(max-width: 500px) {
+            h1 {
+                white-space: normal; /* Only allow wrapping on very tiny phone screens */
+            }
         }
 
         .accent-text {
@@ -128,42 +119,6 @@
             50% { opacity: 0; }
         }
 
-        /* Layout Balancing Graphic */
-        .hero-graphic {
-            display: none;
-            position: relative;
-            z-index: 2;
-            padding-right: 2rem;
-        }
-        
-        @media(min-width: 850px) {
-            .hero-graphic { display: flex; justify-content: center; align-items: center; }
-        }
-
-        .db-stack {
-            position: relative;
-            font-size: clamp(5rem, 8vw, 7rem);
-            color: transparent;
-            -webkit-text-stroke: 2px var(--accent);
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-        }
-
-        .db-stack .glow-ring {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150px; height: 150px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(56,189,248,0.2) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
         .badge-title {
             display: inline-flex;
             align-items: center;
@@ -176,19 +131,19 @@
             font-size: 0.875rem;
             font-weight: 600;
             font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-top: 1rem;
+            margin-top: 1.25rem;
         }
 
-        .contact-grid a {
+        .contact-grid a, .contact-grid span {
             color: var(--text-muted);
             text-decoration: none;
             transition: color 0.3s ease;
@@ -203,24 +158,16 @@
 
         .hero-actions {
             display: flex;
-            gap: 0.75rem;
-            align-items: stretch;
-            margin-top: 1.5rem;
+            gap: 1rem;
+            margin-top: 2rem;
             flex-wrap: wrap; 
-        }
-
-        .hero-actions .btn {
-            flex: 1 1 0px;
-            min-height: 46px;
-            white-space: nowrap;
-            text-align: center;
         }
 
         .btn {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: 0.75rem 1.25rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 8px;
             font-weight: 500;
             text-decoration: none;
@@ -229,7 +176,7 @@
             justify-content: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
         }
 
@@ -264,6 +211,13 @@
             background: var(--accent);
             color: var(--bg-color);
             border-color: var(--accent);
+        }
+
+        /* Make buttons fill width ONLY on mobile */
+        @media(max-width: 640px) {
+            .hero-actions .btn {
+                flex: 1 1 100%;
+            }
         }
 
         /* Sections Layout */
@@ -338,7 +292,7 @@
             font-size: 0.85rem;
             color: var(--text-muted);
             font-weight: 500;
-            margin-left: -40px; /* Offset to center despite dots */
+            margin-left: -40px; 
         }
 
         .code-content {
@@ -631,22 +585,21 @@
         <!-- Hero Header -->
         <header class="reveal">
             <div class="hero-content">
-                <div class="hero-text">
-                    <div class="badge-title">
-                        <i class="fa-solid fa-database"></i> Senior PL/SQL Developer
-                    </div>
-                    
-                    <!-- Typing Name Target -->
-                    <h1><span id="typed-name">Gaurav Manohar <span class="accent-text">Patil</span></span><span class="terminal-cursor">_</span></h1>
-                    
-                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Database Engineer | Oracle EBS R12 & Performance Tuning Specialist</p>
-                    
-                    <div class="contact-grid">
-                        <a href="tel:+918237680394"><i class="fa-solid fa-phone"></i> +91 8237680394</a>
-                        <a href="mailto:patilgaurav926@gmail.com"><i class="fa-solid fa-envelope"></i> patilgaurav926@gmail.com</a>
-                        <a href="https://linkedin.com/in/gauravmpatil" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/gauravmpatil</a>
-                        <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
-                    </div>
+                
+                <div class="badge-title">
+                    <i class="fa-solid fa-database"></i> Senior PL/SQL Developer
+                </div>
+                
+                <!-- Typing Name Target -->
+                <h1><span id="typed-name">Gaurav Manohar <span class="accent-text">Patil</span></span><span class="terminal-cursor">_</span></h1>
+                
+                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Database Engineer | Oracle EBS R12 & Performance Tuning Specialist</p>
+                
+                <div class="contact-grid">
+                    <a href="tel:+918237680394"><i class="fa-solid fa-phone"></i> +91 8237680394</a>
+                    <a href="mailto:patilgaurav926@gmail.com"><i class="fa-solid fa-envelope"></i> patilgaurav926@gmail.com</a>
+                    <a href="https://linkedin.com/in/gauravmpatil" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/gauravmpatil</a>
+                    <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
                 </div>
                 
                 <div class="hero-actions">
@@ -661,6 +614,7 @@
                         <i class="fa-solid fa-file-arrow-down"></i> Download Resume
                     </a>
                 </div>
+                
             </div>
         </header>
 
