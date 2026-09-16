@@ -210,8 +210,16 @@
 
         .hero-actions {
             display: flex;
-            flex-wrap: wrap;
             gap: 0.75rem;
+            align-items: stretch;
+            margin-top: 1.5rem;
+        }
+
+        .hero-actions .btn {
+            flex: 1 1 0px;
+            min-height: 46px;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .btn {
@@ -224,9 +232,11 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -240,12 +250,26 @@
             background: var(--accent);
             color: var(--bg-color);
             font-weight: 600;
-            border: none;
+            border: 1px solid var(--accent);
         }
 
         .btn-primary:hover {
             background: #0ea5e9;
             color: var(--bg-color);
+            border-color: #0ea5e9;
+        }
+
+        .btn-resume {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .btn-resume:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            border-color: var(--accent);
         }
 
         /* Sections Layout */
@@ -604,6 +628,13 @@
         footer span {
             color: var(--accent);
         }
+
+        /* Responsive adjustments */
+        @media(max-width: 768px) {
+            .container { padding: 1rem; }
+            header { padding: 1.5rem; }
+            .hero-text h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -628,23 +659,14 @@
                         <a href="https://linkedin.com/in/gauravmpatil" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/gauravmpatil</a>
                         <span><i class="fa-solid fa-location-dot"></i> Mumbai, India</span>
                     </div>
-                    
-                    <div class="hero-actions" style="margin-top: 1.5rem;">
-                        <a href="mailto:patilgaurav926@gmail.com" class="btn btn-primary">
-                            <i class="fa-solid fa-paper-plane"></i> Get in Touch
-                        </a>
-                        <a href="https://github.com/gaurav-m-patil" target="_blank" class="btn">
-                            <i class="fa-brands fa-github"></i> GitHub Profile
-                        </a>
-                    </div>
                 </div>
-                
-                <!-- Layout Balancing Graphic -->
-                <div class="hero-graphic">
-                    <div class="db-stack">
-                        <i class="fa-solid fa-database"></i>
-                        <div class="glow-ring"></div>
-                    </div>
+                <div class="hero-actions" style="margin-top: 1.5rem;">
+                    <a href="mailto:patilgaurav926@gmail.com" class="btn btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i> Get in Touch
+                    </a>
+                    <a href="https://github.com/gaurav-m-patil" target="_blank" class="btn">
+                        <i class="fa-brands fa-github"></i> GitHub Profile
+                    </a>
                 </div>
             </div>
         </header>
